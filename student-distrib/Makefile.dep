@@ -1,0 +1,32 @@
+boot.o: boot.S multiboot.h x86_desc.h types.h
+except_handl.o: except_handl.S except_handl.h exceptions.h
+exec_help.o: exec_help.S
+interr_handl.o: interr_handl.S interr_handl.h
+syshelp.o: syshelp.S syshelp.h x86_desc.h types.h
+x86_desc.o: x86_desc.S x86_desc.h types.h
+exceptions.o: exceptions.c exceptions.h lib.h types.h syshelp.h PCB.h
+filesys.o: filesys.c filesys.h types.h syshelp.h PCB.h
+i8259.o: i8259.c i8259.h types.h lib.h
+kernel.o: kernel.c multiboot.h types.h x86_desc.h lib.h i8259.h \
+  keyboard.h rtc.h setup_idt.h except_handl.h exceptions.h tests.h \
+  syscall.h PCB.h scheduler.h paging.h terminal.h syshelp.h debug.h \
+  filesys.h
+keyboard.o: keyboard.c keyboard.h i8259.h types.h lib.h terminal.h \
+  syscall.h PCB.h paging.h x86_desc.h syshelp.h scheduler.h
+lib.o: lib.c lib.h types.h terminal.h i8259.h syscall.h PCB.h paging.h \
+  x86_desc.h syshelp.h scheduler.h keyboard.h
+paging.o: paging.c paging.h types.h
+PCB.o: PCB.c PCB.h types.h
+rtc.o: rtc.c rtc.h types.h i8259.h lib.h
+scheduler.o: scheduler.c scheduler.h types.h i8259.h syscall.h PCB.h \
+  lib.h paging.h terminal.h x86_desc.h syshelp.h keyboard.h
+setup_idt.o: setup_idt.c setup_idt.h except_handl.h exceptions.h \
+  keyboard.h rtc.h types.h i8259.h x86_desc.h tests.h syscall.h PCB.h \
+  scheduler.h lib.h paging.h terminal.h syshelp.h
+syscall.o: syscall.c syscall.h types.h PCB.h lib.h x86_desc.h filesys.h \
+  keyboard.h rtc.h terminal.h i8259.h paging.h syshelp.h scheduler.h
+terminal.o: terminal.c terminal.h types.h i8259.h syscall.h PCB.h lib.h \
+  paging.h x86_desc.h syshelp.h scheduler.h keyboard.h
+tests.o: tests.c tests.h x86_desc.h types.h keyboard.h rtc.h lib.h \
+  paging.h filesys.h terminal.h i8259.h syscall.h PCB.h syshelp.h \
+  scheduler.h
